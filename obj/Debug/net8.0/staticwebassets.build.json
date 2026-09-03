@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "JHJU8pRjy1+SPClNr/M9J27v84gkBM7XosFuFy/S7/Q=",
+  "Source": "ProyectoPedido",
+  "BasePath": "_content/ProyectoPedido",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ProyectoPedido\\wwwroot",
+      "Source": "ProyectoPedido",
+      "ContentRoot": "C:\\Users\\Issac\\ProyectoPedido\\ProyectoPedido\\wwwroot\\",
+      "BasePath": "_content/ProyectoPedido",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
