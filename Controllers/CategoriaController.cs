@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProyectoPedido.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Categoria")]
     [ApiController]
     public class CategoriaController : ControllerBase
     {

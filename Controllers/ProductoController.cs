@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProyectoPedido.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Producto")]
     [ApiController]
     public class ProductoController : ControllerBase
     {
@@ -34,6 +34,32 @@ namespace ProyectoPedido.Controllers
                 NombreCategoria = p.Categoria.Nombres
             }).ToList();
             return Ok(productoMostrar);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CrearProducto([FromBody] Producto producto)
+        {
+            var nombreMayuscula = producto.Nombres.Trim().ToUpper();
+
+            var existeProducto = await _context.Productos.AnyAsync(e => e.Nombres == nombreMayuscula);
+
+            if(!existeProducto){
+                var nuevoProducto = new Producto
+                {
+                    Nombres = nombreMayuscula,
+                    Descripcion = producto.Descripcion,
+                    Costo = producto.Costo,
+                    Venta = producto.Venta,
+                    Stock = producto.Stock,
+
+                    CategoriaID = producto.CategoriaID,
+                };
+
+                _context.Add(nuevoProducto);
+                await _context.SaveChangesAsync();
+
+                return Ok("Producto guardado");
+            }
         }
     }
 }
