@@ -29,7 +29,7 @@ var app = builder.Build();
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetCurrentDirectory(), "C:/Users/Issac/ProyectoPedido/FrontPedido")),
+        Path.Combine(Directory.GetCurrentDirectory(), "FrontPedido")),
     RequestPath = ""
 });
 

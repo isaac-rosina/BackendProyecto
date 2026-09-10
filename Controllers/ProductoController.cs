@@ -59,7 +59,47 @@ namespace ProyectoPedido.Controllers
                 await _context.SaveChangesAsync();
 
                 return Ok("Producto guardado");
+            } 
+            else {
+                return BadRequest("El producto ya existe");
             }
         }
+
+        [HttpPut("{productoId}")]
+        public async Task<IActionResult> EditarProducto(int productoId, [FromBody] Producto producto)
+        {
+            if (producto.Nombres == null){
+                return NotFound("El nombre esta vacío");
+            }
+
+            var nombreMayuscula = producto.Nombres.Trim().ToUpper();
+
+            var editarProducto = await _context.Productos.Where(p => p.ProductoID == productoId).FirstOrDefaultAsync();
+
+            if(editarProducto == null) {
+                return NotFound("La categoría no existe.");
+            }
+
+            var existeNombre = await _context.Productos.where(p => p.Nombres = nombreMayuscula && p.ProductoID == productoId).AnyAsync();
+            if (!existeNombre) {
+                editarProducto.Nombre = nombreMayuscula;
+                editarProducto.CategoriaID = producto.CategoriaID;
+                editarProducto.PrecioCosto = producto.Costo;
+                editarProducto.PrecioVenta = producto.Venta;
+                editarProducto.Stock = producto.Stock;
+                await _contexts.SaveChangesAsync();
+
+                return Ok("Producto editado exitosamente.")
+            }
+            else {
+                return NotFound("Ya existe un producto con ese nombre.")
+            }
+        }
+
+        // [HttpDelete]
+        // public async Task<IActionResult> EliminarProducto()
+        // {
+
+        // }
     }
 }

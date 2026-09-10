@@ -82,5 +82,18 @@ namespace ProyectoPedido.Controllers
             return NoContent();
         }
 
+        [HttpGet("{categoriaId}")]
+        public async Task<IActionResult> ObtenerCategoria(int categoriaId)
+        {
+            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.CategoriaID == categoriaId);
+
+            if (categoria == null) {
+                return NotFound("Categoría no encontrada");
+            }
+            else {
+                return Ok(categoria);
+            }
+        }
+
     }
 }

@@ -517,3 +517,4 @@ C:\Users\Issac\ProyectoPedido\ProyectoPedido\obj\Debug\net8.0\ProyectoPedido.pdb
 C:\Users\Issac\ProyectoPedido\ProyectoPedido\obj\Debug\net8.0\ProyectoPedido.genruntimeconfig.cache
 C:\Users\Issac\ProyectoPedido\ProyectoPedido\obj\Debug\net8.0\ref\ProyectoPedido.dll
 C:\Users\Issac\ProyectoPedido\ProyectoPedido\bin\Debug\net8.0\ProyectoPedido.staticwebassets.runtime.json
+C:\Users\Issac\ProyectoPedido\ProyectoPedido\obj\Debug\net8.0\ProyectoPedido.sourcelink.json
