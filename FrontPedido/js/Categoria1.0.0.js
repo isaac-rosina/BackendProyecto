@@ -1,5 +1,5 @@
 function ObtenerCategoria() {
-  fetch("http://localhost:5049/api/Categoria")
+  fetch("http://localhost:5030/api/Categoria")
     .then((respuesta) => respuesta.json())
     .then((data) => {
       console.log(data);
@@ -53,7 +53,7 @@ function AgregarCategoria() {
     nombre: document.getElementById("nombreCategoria").value,
   };
 
-  fetch("http://localhost:5049/api/Categoria", {
+  fetch("http://localhost:5030/api/Categoria", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -71,7 +71,7 @@ function AgregarCategoria() {
 
 
 function BuscarValoresCategoria(id) {
-  fetch(`http://localhost:5049/api/Categoria/${id}`)
+  fetch(`http://localhost:5030/api/Categoria/${id}`)
     .then((respuesta) => {
       if (!respuesta.ok) {
         throw new Error(`Error HTTP: ${respuesta.status}`);
@@ -105,7 +105,7 @@ function EditarCategoria() {
     nombre: document.getElementById("nombreEditar").value,
   };
 
-  fetch(`http://localhost:5049/api/Categoria/${id}`, {
+  fetch(`http://localhost:5030/api/Categoria/${id}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -135,7 +135,7 @@ function ValidacionEliminarCategoria(id) {
   }
 }
 function EliminarCategoria(id) {
-  fetch(`http://localhost:5049/api/Categoria/${id}`, {
+  fetch(`http://localhost:5030/api/Categoria/${id}`, {
     method: "DELETE",
   })
     .then(() => {

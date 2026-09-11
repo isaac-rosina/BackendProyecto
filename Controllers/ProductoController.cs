@@ -80,19 +80,19 @@ namespace ProyectoPedido.Controllers
                 return NotFound("La categoría no existe.");
             }
 
-            var existeNombre = await _context.Productos.where(p => p.Nombres = nombreMayuscula && p.ProductoID == productoId).AnyAsync();
+            var existeNombre = await _context.Productos.Where(p => p.Nombres == nombreMayuscula && p.ProductoID == productoId).AnyAsync();
             if (!existeNombre) {
-                editarProducto.Nombre = nombreMayuscula;
+                editarProducto.Nombres = nombreMayuscula;
                 editarProducto.CategoriaID = producto.CategoriaID;
-                editarProducto.PrecioCosto = producto.Costo;
-                editarProducto.PrecioVenta = producto.Venta;
+                editarProducto.Costo = producto.Costo;
+                editarProducto.Venta = producto.Venta;
                 editarProducto.Stock = producto.Stock;
-                await _contexts.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-                return Ok("Producto editado exitosamente.")
+                return Ok("Producto editado exitosamente.");
             }
             else {
-                return NotFound("Ya existe un producto con ese nombre.")
+                return NotFound("Ya existe un producto con ese nombre.");
             }
         }
 
