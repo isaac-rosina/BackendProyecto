@@ -21,6 +21,7 @@ function mostrarCategoria(data) {
     // Botón eliminar
     let eliminar = document.createElement("button");
     eliminar.textContent = "Eliminar";
+    eliminar.classList.add("btn", "btn-danger");
 
     eliminar.setAttribute(
       "onclick",
