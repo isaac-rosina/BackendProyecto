@@ -6,15 +6,13 @@ function obtenerCategoria() {
 
             const opciones = `<option value="">[SELECCIONE...]</option>
                             ${data.map((categoria) => `
-                                <option value="${categoria.id}">
-                                ${categoria.nombre}
+                                <option value="${categoria.categoriaID}">
+                                ${categoria.nombres}
                                 </option>
                                 `,).join("")}            
                             `;
             
             document.getElementById("CategoriaID").innerHTML = opciones;
-            document.getElementById("CategoriaIDeditar").innerHTML = opciones;
-
         })
         .catch((error) => console.error("Error categorias:", error));
 }

@@ -8,6 +8,7 @@ function ObtenerCategoria() {
     .catch((error) => console.error(error));
 }
 
+
 function mostrarCategoria(data) {
   const tbody = document.getElementById("TablaCategoria");
   tbody.innerHTML = ""; 
@@ -16,7 +17,7 @@ function mostrarCategoria(data) {
     console.log("Elemento:", element);
     console.log("ID:", element.categoriaID);
     let tr = tbody.insertRow();
-    tr.insertCell(0).innerHTML = element.nombre;
+    tr.insertCell(0).innerHTML = element.nombres;
 
     // Botón eliminar
     let eliminar = document.createElement("button");
@@ -51,7 +52,7 @@ function mostrarCategoria(data) {
 
 function AgregarCategoria() {
   var nuevaCategoria = {
-    nombre: document.getElementById("nombreCategoria").value,
+    nombres: document.getElementById("nombreCategoria").value,
   };
 
   fetch("http://localhost:5030/api/Categoria", {
@@ -63,7 +64,7 @@ function AgregarCategoria() {
     body: JSON.stringify(nuevaCategoria),
   })
     .then((respuesta) => respuesta.json())
-    .then((data) => {
+    .then(() => {
       document.getElementById("nombreCategoria").value = "";
       ObtenerCategoria();
     });
@@ -103,7 +104,7 @@ function EditarCategoria() {
 
   let editarCategoria = {
     categoriaId: document.getElementById("idEditar").value,
-    nombre: document.getElementById("nombreEditar").value,
+    nombres: document.getElementById("nombreEditar").value,
   };
 
   fetch(`http://localhost:5030/api/Categoria/${id}`, {

@@ -36,34 +36,46 @@ namespace ProyectoPedido.Controllers
             return Ok(productoMostrar);
         }
 
+        [HttpGet("{idCategorias}")]
+        public async Task<IActionResult> TraerCategoria(int idCategorias)
+        {
+            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.CategoriaID == idCategorias);
+
+            if (categoria == null) {
+                return NotFound("La categoria no encontrada.");
+            }
+            else {
+                return Ok(categoria);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CrearProducto([FromBody] Producto producto)
         {
-            var nombreMayuscula = producto.Nombres.Trim().ToUpper();
+            var existeCategoria = await _context.Categorias.AnyAsync(c => c.CategoriaID == producto.CategoriaID);
 
-            var existeProducto = await _context.Productos.AnyAsync(e => e.Nombres == nombreMayuscula);
-
-            if(!existeProducto){
-                var nuevoProducto = new Producto
-                {
-                    Nombres = nombreMayuscula,
-                    Descripcion = producto.Descripcion,
-                    Costo = producto.Costo,
-                    Venta = producto.Venta,
-                    Stock = producto.Stock,
-
-                    CategoriaID = producto.CategoriaID,
-                };
-
-                _context.Add(nuevoProducto);
-                await _context.SaveChangesAsync();
-
-                return Ok("Producto guardado");
-            } 
-            else {
-                return BadRequest("El producto ya existe");
+            if (!existeCategoria)
+            {
+                return BadRequest($"Error: La categoría con ID {producto.CategoriaID} no existe.");
             }
+
+            var nuevoProducto = new Producto
+            {
+
+                Nombres = producto.Nombres,
+                Costo = producto.Costo,
+                Venta = producto.Venta,
+                Stock = producto.Stock,
+                CategoriaID = producto.CategoriaID,
+                Descripcion = producto.Descripcion,
+            };
+
+            _context.Add(nuevoProducto);
+            await _context.SaveChangesAsync();
+
+            return Ok("Producto guardado exitosamente");
         }
+
 
         [HttpPut("{productoId}")]
         public async Task<IActionResult> EditarProducto(int productoId, [FromBody] Producto producto)

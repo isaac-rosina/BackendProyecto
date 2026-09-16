@@ -1,27 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producto</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/FrontPedido/style/style.css">
     <link rel="stylesheet" href="/Bootstrap/biblioteca bootstrap/css/bootstrap.min.css">
 </head>
+
 <body>
 
-    <div class="container">
-        <h1 class="mb-4">Producto</h1>
+    <div class="container mt-4 shadow-sm p-4 bg-white rounded">
 
-        <div class=" ">
-            <div class="d-flex gap-2 mb3">
-                <select name="CategoriaID" id="CategoriaID" class="form-control">
-                    <option value="">[SELECCIONE...]</option>
-                </select>
+        <div class="container mb-4">
+            <h1 class="mb-4">Producto</h1>
+
+            <div class=" ">
+                <div class="d-flex gap-2 mb3">
+                    <select name="CategoriaID" id="CategoriaID" class="form-control">
+                        <option value="">[SELECCIONE...]</option>
+                    </select>
+                    <input type="text" id="nombreProducto" placeholder="Ingrese nombre">
+                    <input type="text" id="costoProducto" placeholder="Ingrese costo">
+                    <input type="text" id="ventaProducto" placeholder="Ingrese precio">
+                    <button class="btn btn-primary w-100">Guardar</button>
+                </div>
             </div>
         </div>
+
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Costo</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody id="tablaProducto">
+
+            </tbody>
+        </table>
+
     </div>
-    
+
+
     <script src="/Bootstrap/biblioteca bootstrap/js/bootstrap.min.js"></script>
     <script src="/js/Producto1.0.0.js"></script>
 </body>
+
 </html>
