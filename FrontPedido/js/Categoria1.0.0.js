@@ -76,7 +76,7 @@ function BuscarValoresCategoria(id) {
   fetch(`http://localhost:5030/api/Categoria/${id}`)
     .then((respuesta) => {
       if (!respuesta.ok) {
-        throw new Error(`Error HTTP: ${respuesta.status}`);
+        throw new Error(  );
       }
       return respuesta.json();
     })
@@ -111,7 +111,7 @@ function EditarCategoria() {
     method: "PUT",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", 
     },
     body: JSON.stringify(editarCategoria),
   })

@@ -16,37 +16,20 @@ namespace ProyectoPedido.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ListadoProducto()
+  
+        [HttpGet("idCategorias")]
+        public async Task<IActionResult> ObtenerCategoria()
         {
-            var listadoProducto = await _context.Productos.Include(p => p.Categoria).ToListAsync();
-
-            var productoMostrar = listadoProducto.Select(p => new vistaProducto
+            var categorias = await _context.Categorias
+                .OrderBy(c => c.Nombres) // le decimos que la ordene por nombre
+                .Select(c => new
                 {
-                ProductoID = p.ProductoID,
-                NombreProducto = p.Nombres,
-                DescripcionProducto = p.Descripcion,
-                CostoProducto = p.Costo,
-                VentaProducto = p.Venta,
-                StockProducto = p.Stock,
+                    id = c.CategoriaID,
+                    nombre = c.Nombres
+                })
+                .ToListAsync();
 
-                CategoriaID = p.CategoriaID,
-                NombreCategoria = p.Categoria.Nombres
-            }).ToList();
-            return Ok(productoMostrar);
-        }
-
-        [HttpGet("{idCategorias}")]
-        public async Task<IActionResult> TraerCategoria(int idCategorias)
-        {
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.CategoriaID == idCategorias);
-
-            if (categoria == null) {
-                return NotFound("La categoria no encontrada.");
-            }
-            else {
-                return Ok(categoria);
-            }
+            return Ok(categorias);
         }
 
         [HttpPost]
