@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Producto</title>
-    <link rel="stylesheet" href="/FrontPedido/style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/Bootstrap/biblioteca bootstrap/css/bootstrap.min.css">
 </head>
 
@@ -24,6 +24,8 @@
                     <input type="text" id="nombreProducto" placeholder="Ingrese nombre">
                     <input type="number" id="costoProducto" placeholder="Ingrese costo">
                     <input type="number" id="ventaProducto" placeholder="Ingrese precio">
+                    <input type="number" id="stockProducto" placeholder="Ingrese stock">
+                    <input type="text" id="descripcionProducto" placeholder="Ingrese descripción">
                     <button class="btn btn-primary w-100" onclick="agregarProducto()">Guardar</button>
                 </div>
             </div>
@@ -62,6 +64,8 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Costo</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Descripción</th>
                 </tr>
             </thead>
             <tbody id="tablaProducto">

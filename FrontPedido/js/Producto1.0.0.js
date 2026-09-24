@@ -20,7 +20,7 @@ function obtenerCategoria() {
 
 function obtenerProducto() {
     fetch("http://localhost:5030/api/Producto")
-        .then((res) => res.json())
+        .then((respuesta) => respuesta.json())
         .then((data) => {
             console.log(data);
             mostrarProducto(data);
@@ -31,6 +31,7 @@ function obtenerProducto() {
 
 function mostrarProducto(data) {
     const tbody = document.getElementById("tablaProducto");
+    if (!tbody) return;
     tbody.innerHTML = "";
 
     data.forEach((element) => {
@@ -41,6 +42,8 @@ function mostrarProducto(data) {
         tr.insertCell(0).innerHTML = element.nombres;
         tr.insertCell(1).innerHTML = element.costo;
         tr.insertCell(2).innerHTML = element.precio;
+        tr.insertCell(3).innerHTML = element.stock;
+        tr.insertCell(4).innerHTML = element.descripcion;
 
         //Boton de eliminar
         let eliminar = document.createElement("button");
@@ -51,7 +54,7 @@ function mostrarProducto(data) {
             "onclick", `validacionEliminarProducto(${element.productoID})`,
         );
 
-        let tdEliminar = tr.insertCell(3);
+        let tdEliminar = tr.insertCell(5);
         tdEliminar.appendChild(eliminar);
 
         //Boton de editar
@@ -63,7 +66,7 @@ function mostrarProducto(data) {
             "onclick", `buscarValoresProducto(${element.productoID})`,
         );
 
-        let tdEditar = tr.insertCell(4);
+        let tdEditar = tr.insertCell(6);
         tdEditar.appendChild(editar);
     });
 }
@@ -72,9 +75,13 @@ function mostrarProducto(data) {
 function agregarProducto() {
     var nuevoProducto = {
         nombres: document.getElementById("nombreProducto").value,
-        costo: document.getElementById("costoProducto").value,
-        precio: document.getElementById("ventaProducto").value,
+        costo: parseFloat(document.getElementById("costoProducto").value),
+        precio: parseFloat(document.getElementById("ventaProducto").value),
+        stock: parseInt(document.getElementById("stockProducto").value),
+        descripcion: document.getElementById("descripcionProducto").value,
+        categoriaId: parseInt(document.getElementById("CategoriaID").value),
     };
+    console.log("Producto enviado:", nuevoProducto);
 
     fetch("http://localhost:5030/api/Producto", {
         method: "POST",
@@ -86,9 +93,12 @@ function agregarProducto() {
     })
         .then((res) => res.json())
         .then(() => {
+            alert("Producto creado excitosamente.");
             document.getElementById("nombreProducto").value = "";
             document.getElementById("costoProducto").value = "";
             document.getElementById("ventaProducto").value = "";
+            document.getElementById("stockProducto").value = "";
+            document.getElementById("descripcionProducto").value = "";
             obtenerProducto();
         });
 }
@@ -172,3 +182,4 @@ function eliminarProducto(id) {
 }
 
 obtenerCategoria();
+obtenerProducto();

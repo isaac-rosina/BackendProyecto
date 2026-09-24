@@ -76,7 +76,7 @@ function BuscarValoresCategoria(id) {
   fetch(`http://localhost:5030/api/Categoria/${id}`)
     .then((respuesta) => {
       if (!respuesta.ok) {
-        throw new Error(  );
+        throw new Error(`Error HTTP: ${respuesta.status}`);
       }
       return respuesta.json();
     })

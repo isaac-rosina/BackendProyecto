@@ -16,12 +16,32 @@ namespace ProyectoPedido.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ListadoProducto()
+        {
+            var listadoProducto = await _context.Productos.Include(p => p.Categoria).ToListAsync();
+
+            var ProductoMostrar = listadoProducto.Select(p => new vistaProducto
+            {
+                ProductoID = p.ProductoID,
+                NombreProducto = p.Nombres,
+                DescripcionProducto = p.Descripcion,
+                CostoProducto = p.Costo,
+                VentaProducto = p.Venta,
+                StockProducto = p.Stock,
+                CategoriaID = p.CategoriaID,
+
+                NombreCategoria = p.Categoria.Nombres
+            }).ToList();
+            return Ok(ProductoMostrar);
+
+        }
   
         [HttpGet("idCategorias")]
         public async Task<IActionResult> ObtenerCategoria()
         {
             var categorias = await _context.Categorias
-                .OrderBy(c => c.Nombres) // le decimos que la ordene por nombre
+                .OrderBy(c => c.Nombres)
                 .Select(c => new
                 {
                     id = c.CategoriaID,
@@ -31,6 +51,33 @@ namespace ProyectoPedido.Controllers
 
             return Ok(categorias);
         }
+
+        [HttpGet("{productoId}")]
+        public async Task<IActionResult> ObtenerProducto(int productoId)
+        {
+            var producto = await _context.Productos
+                .Where(p => p.ProductoID == productoId)
+                .Select(p => new
+                {
+                    productoId = p.ProductoID,
+                    nombres = p.Nombres,
+                    costo = p.Costo,
+                    venta = p.Venta,
+                    stock = p.Stock,
+                    categoriaID = p.CategoriaID,
+        
+                    nombreCategoria = p.Categoria.Nombres
+                })
+                .FirstOrDefaultAsync();
+
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(producto);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> CrearProducto([FromBody] Producto producto)
@@ -44,7 +91,6 @@ namespace ProyectoPedido.Controllers
 
             var nuevoProducto = new Producto
             {
-
                 Nombres = producto.Nombres,
                 Costo = producto.Costo,
                 Venta = producto.Venta,
@@ -52,11 +98,12 @@ namespace ProyectoPedido.Controllers
                 CategoriaID = producto.CategoriaID,
                 Descripcion = producto.Descripcion,
             };
-
+            {
             _context.Add(nuevoProducto);
             await _context.SaveChangesAsync();
 
             return Ok("Producto guardado exitosamente");
+            }
         }
 
 
@@ -91,10 +138,21 @@ namespace ProyectoPedido.Controllers
             }
         }
 
-        // [HttpDelete]
-        // public async Task<IActionResult> EliminarProducto()
-        // {
+         [HttpDelete("{productoid}")]
+        public async Task<IActionResult> Eliminar(int productoid)
+        {
 
-        // }
+            var producto = await _context.Productos.FindAsync(productoid);
+
+            // pedimos que busque  la categoría directamente por su Id
+            if (producto == null)
+            {
+                return NotFound("Producto no encontrado");
+            }
+
+            _context.Productos.Remove(producto);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
