@@ -16,6 +16,7 @@ function mostrarCategoria(data) {
   data.forEach((element) => {
     console.log("Elemento:", element);
     console.log("ID:", element.categoriaID);
+    
     let tr = tbody.insertRow();
     tr.insertCell(0).innerHTML = element.nombres;
 

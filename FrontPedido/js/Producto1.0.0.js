@@ -6,7 +6,7 @@ function obtenerCategoria() {
 
             const opciones = `<option value="">[SELECCIONE...]</option>
                             ${data.map((categoria) => `
-                                <option value="${categoria.categoriaID}">
+                                <option value="${categoria.id}">
                                 ${categoria.nombre}
                                 </option>
                                 `,).join("")}            
@@ -39,11 +39,11 @@ function mostrarProducto(data) {
         console.log("ID:", element.productoID)
 
         let tr = tbody.insertRow();
-        tr.insertCell(0).innerHTML = element.nombres;
-        tr.insertCell(1).innerHTML = element.costo;
-        tr.insertCell(2).innerHTML = element.precio;
-        tr.insertCell(3).innerHTML = element.stock;
-        tr.insertCell(4).innerHTML = element.descripcion;
+        tr.insertCell(0).innerHTML = element.nombreProducto;
+        tr.insertCell(1).innerHTML = element.costoProducto;
+        tr.insertCell(2).innerHTML = element.ventaProducto;
+        tr.insertCell(3).innerHTML = element.stockProducto;
+        tr.insertCell(4).innerHTML = element.descripcionProducto;
 
         //Boton de eliminar
         let eliminar = document.createElement("button");
@@ -76,7 +76,7 @@ function agregarProducto() {
     var nuevoProducto = {
         nombres: document.getElementById("nombreProducto").value,
         costo: parseFloat(document.getElementById("costoProducto").value),
-        precio: parseFloat(document.getElementById("ventaProducto").value),
+        venta: parseFloat(document.getElementById("ventaProducto").value),
         stock: parseInt(document.getElementById("stockProducto").value),
         descripcion: document.getElementById("descripcionProducto").value,
         categoriaId: parseInt(document.getElementById("CategoriaID").value),
@@ -93,7 +93,6 @@ function agregarProducto() {
     })
         .then((res) => res.json())
         .then(() => {
-            alert("Producto creado excitosamente.");
             document.getElementById("nombreProducto").value = "";
             document.getElementById("costoProducto").value = "";
             document.getElementById("ventaProducto").value = "";
@@ -105,6 +104,7 @@ function agregarProducto() {
 
 
 function buscarValoresProducto(id) {
+    console.log("ID recibido", id);
     fetch(`http://localhost:5030/api/Producto/${id}`)
         .then((res) => {
             if (!res.ok) {
@@ -115,8 +115,12 @@ function buscarValoresProducto(id) {
         .then((data) => {
             console.log("Producto:", data);
 
-            document.getElementById("idEditarProducto") = data.productoID;
-            document.getElementById("nombreEditarProducto") = data.nombres;
+            document.getElementById("idEditarProducto").value = data.productoId;
+            document.getElementById("CategoriaIDeditar").value = data.categoriaID;
+            document.getElementById("nombreEditarProducto").value = data.nombres;
+            document.getElementById("costoEditarProducto").value = data.costo;
+            document.getElementById("precioEditarProducto").value = data.venta;
+            document.getElementById("stockEditarProducto").value = data.stock;
 
             let modal = new bootstrap.Modal(
                 document.getElementById("editarProducto"),
@@ -132,12 +136,15 @@ function buscarValoresProducto(id) {
 
 function editarProducto() {
     let id = document.getElementById("idEditarProducto").value;
+    console.log("ID recibido editar:", id);
 
     let editarProducto = {
-        productoId: document.getElementById("idEditarProducto").value,
+        productoID: id,
+        categoriaId: document.getElementById("CategoriaIDeditar").value,
         nombres: document.getElementById("nombreEditarProducto").value,
         costo: document.getElementById("costoEditarProducto").value,
-        precio: document.getElementById("precioEditarProducto").value,
+        venta: document.getElementById("precioEditarProducto").value,
+        stock: document.getElementById("stockEditarProducto").value,
     }
 
     fetch(`http://localhost:5030/api/Producto/${id}`, {
@@ -145,14 +152,19 @@ function editarProducto() {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
+            
         },
         body: JSON.stringify(editarProducto),
+        
     })
         .then(() => {
+             console.log("ID recibido editarfinal:", id);
             document.getElementById("idEditarProducto").value = 0;
+            document.getElementById("CategoriaIDeditar").value = 0;
             document.getElementById("nombreEditarProducto").value = "";
             document.getElementById("costoEditarProducto").value = "";
             document.getElementById("precioEditarProducto").value = "";
+            document.getElementById("stockEditarProducto").value = "";
 
             let modal = bootstrap.Modal.getInstance(
                 document.getElementById("editarProducto"),

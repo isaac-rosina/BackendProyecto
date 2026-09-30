@@ -43,15 +43,27 @@
                     <div class="modal-body">
 
                         <input type="hidden" id="idEditarProducto">
+                        
+                        <label for="nombreEditarProducto">Nombre</label>
                         <input type="text" id="nombreEditarProducto" placeholder="Ingrese nuevo Nombre">
+
+                        <label for="costoEditarProducto">Costo</label>
                         <input type="number" id="costoEditarProducto" placeholder="Ingrese nuevo Costo">
+
+                        <label for="precioEditarProducto">Precio</label>
                         <input type="number" id="precioEditarProducto" placeholder="Ingrese nuevo Precio">
+
+                        <label for="stockEditarProducto">Stock</label>
+                        <input type="number" id="stockEditarProducto" placeholder="Ingrese nuevo Stock">
+
+                        <label for="CategoriaIDeditar">Categoria</label>
+                        <input type="number" id="CategoriaIDeditar" placeholder="Ingrese nueva Categoria">
 
                     </div>
                     <div class="modal-footer">
 
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="EditarCategoria()">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="editarProducto()">Guardar</button>
                     </div>
                 </div>
             </div>
