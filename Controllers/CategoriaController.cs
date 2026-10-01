@@ -24,6 +24,19 @@ namespace ProyectoPedido.Controllers
             return Ok(categorias);
         }
 
+        [HttpGet("{categoriaId}")]
+        public async Task<IActionResult> ObtenerCategoria(int categoriaId)
+        {
+            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.CategoriaID == categoriaId);
+
+            if (categoria == null) {
+                return NotFound("Categoría no encontrada");
+            }
+            else {
+                return Ok(categoria);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CrearCategoria([FromBody] Categoria categoria )
         {
@@ -81,19 +94,5 @@ namespace ProyectoPedido.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
-
-        [HttpGet("{categoriaId}")]
-        public async Task<IActionResult> ObtenerCategoria(int categoriaId)
-        {
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(c => c.CategoriaID == categoriaId);
-
-            if (categoria == null) {
-                return NotFound("Categoría no encontrada");
-            }
-            else {
-                return Ok(categoria);
-            }
-        }
-
     }
 }

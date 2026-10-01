@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="/Bootstrap/biblioteca bootstrap/css/bootstrap.min.css">
+</head>
+
+<body id="bodyPedido">
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Nuevo Pedido</h1>
+
+        <div class="row mb-4">
+            <h3>Detalle del pedido</h3>
+            <div class="row mb-3 align-items-end">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label class="form-label">Producto</label>
+                    <select class="form-control" id="producto" onchange="cargarPrecio()">
+                        <option value="">[SELECCIONE...]</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad">
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <label class="form-label">Precio Unitario</label>
+                    <input type="number" id="precioUnitario" class="form-control" step="0.01" readonly>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary w-100" onclick="AgregarDetalle()">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+
+            <!-- tabla detalle memoria -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Subtotal</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaDetalles">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/Pedido1.0.0.js"></script>
+    <script src="/Bootstrap/biblioteca bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

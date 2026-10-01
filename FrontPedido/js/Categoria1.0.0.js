@@ -23,7 +23,7 @@ function mostrarCategoria(data) {
     // Botón eliminar
     let eliminar = document.createElement("button");
     eliminar.textContent = "Eliminar";
-    eliminar.classList.add("btn", "btn-danger");
+    eliminar.classList.add("btn", "btn-danger", "fw-bold");
 
     eliminar.setAttribute(
       "onclick",
@@ -37,7 +37,7 @@ function mostrarCategoria(data) {
     let editar = document.createElement("button");
 
     editar.textContent = "Editar";
-    editar.classList.add("btn", "btn-primary");
+    editar.classList.add("btn", "btn-primary", "fw-bold");
 
     editar.setAttribute(
       "onclick",
@@ -72,7 +72,6 @@ function AgregarCategoria() {
 }
 
 
-
 function BuscarValoresCategoria(id) {
   fetch(`http://localhost:5030/api/Categoria/${id}`)
     .then((respuesta) => {
@@ -85,7 +84,7 @@ function BuscarValoresCategoria(id) {
       console.log("Categoría:", data);
 
       document.getElementById("idEditar").value = data.categoriaID;
-      document.getElementById("nombreEditar").value = data.nombre;
+      document.getElementById("nombreEditar").value = data.nombres;
 
       let modal = new bootstrap.Modal(
         document.getElementById("editarCategoria"),
@@ -97,7 +96,6 @@ function BuscarValoresCategoria(id) {
       console.error("No se pudo acceder a la API:", error);
     });
 }
-
 
 
 function EditarCategoria() {
