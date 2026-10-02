@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="/Bootstrap/biblioteca bootstrap/css/bootstrap.min.css">
 </head>
 
-<body id="bodyCategoria">
-    <div id="contenidoCategoria" class="container mt-4 shadow-sm p-4 bg-white rounded">
+<body class="bg-primary">
+    <div class="container mt-4 shadow-sm p-4 bg-white rounded">
 
-        <h3 class="mb-4 text-primary">Gestión de Categorías</h3>
+        <h1 class="mb-4 text-primary">Gestión de Categorías</h1>
 
         <div class="row mb-4">
             <div class="col-md-9 mb-2 mb-md-0">
@@ -38,7 +38,7 @@
                     <div class="modal-body bg-light">
 
                         <input type="hidden" id="idEditar">
-                        <input type="text" id="nombreEditar" placeholder="Ingrese nuevo Nombre">
+                        <input type="text" id="nombreEditar" class="form-control w-50" placeholder="Ingrese nuevo Nombre">
                     </div>
                     <div class="modal-footer bg-light">
 
@@ -50,7 +50,7 @@
         </div>
 
 <!-- Tabla -->
-        <table class="table table-bordered table-hover table-success table-striped">
+        <table class="table table-bordered table-hover table-primary table-striped">
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Nombre</th>
@@ -58,7 +58,7 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody id="TablaCategoria" class="table-striped-columns">
+            <tbody id="TablaCategoria">
 
             </tbody>
         </table>

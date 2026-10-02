@@ -77,7 +77,7 @@ function MostrarDetalles() {
             <td>${detalle.cantidad}</td>
             <td>$${detalle.precioUnitario.toFixed(2)}</td>
             <td>$${subtotal.toFixed(2)}</td>
-            <td><button type="button" class="btn btn-danger" onclick="EliminarDetalle(${index})">Eliminar</button></td>
+            <td><button type="button" class="btn btn-danger fw-bold" onclick="EliminarDetalle(${index})">Eliminar</button></td>
         </tr>
         `;
     });

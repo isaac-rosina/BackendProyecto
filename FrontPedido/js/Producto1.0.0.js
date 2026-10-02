@@ -48,7 +48,7 @@ function mostrarProducto(data) {
         //Boton de eliminar
         let eliminar = document.createElement("button");
         eliminar.textContent = "Eliminar";
-        eliminar.classList.add("btn", "btn-danger");
+        eliminar.classList.add("btn", "btn-danger", "fw-bold");
 
         eliminar.setAttribute(
             "onclick", `validacionEliminarProducto(${element.productoID})`,
@@ -60,7 +60,7 @@ function mostrarProducto(data) {
         //Boton de editar
         let editar = document.createElement("button");
         editar.textContent = "Editar";
-        editar.classList.add("btn", "btn-primary");
+        editar.classList.add("btn", "btn-primary", "fw-bold");
 
         editar.setAttribute(
             "onclick", `buscarValoresProducto(${element.productoID})`,
