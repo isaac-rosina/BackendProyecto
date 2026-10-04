@@ -152,10 +152,8 @@ function editarProducto() {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            
         },
         body: JSON.stringify(editarProducto),
-        
     })
         .then(() => {
              console.log("ID recibido editarfinal:", id);

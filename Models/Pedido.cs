@@ -18,7 +18,7 @@ public enum Estado
 {
     Pendiente,
     Enviado,
-    Entragado
+    Entregado
 }
 
 public class VistaPedido

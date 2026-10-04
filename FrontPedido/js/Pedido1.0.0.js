@@ -44,11 +44,17 @@ function cargarPrecio() {
 
 
 function AgregarDetalle() {
+    // let nombre = document.getElementById("nombre");
+    // let fecha = document.getElementById("fecha");
+    // let estado = document.getElementById("estado"),value;
     let producto = document.getElementById("producto");
     let cantidad = Number(document.getElementById("cantidad").value);
     let precio = Number(document.getElementById("precioUnitario").value);
 
     let detalle = {
+        // nombre: nombre,
+        // fecha: fecha,
+        // estado: estado,
         productoID: Number(producto.value),
         nombreProducto: producto.options[producto.selectedIndex].text, // lo muestra en pantalla
         cantidad: cantidad,
@@ -57,6 +63,21 @@ function AgregarDetalle() {
 
     detallesPedido.push(detalle);
     MostrarDetalles();
+
+    // fetch("http://localhost:5030/api/Pedido", {
+    //     method: "POST",
+    //     headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(detalle),
+    // })
+    //     .then((res) => res.json())
+    //     .then(() => {
+    //         document.getElementById("producto").innerHTML = '<option value="">[SELECCIONE...]</option>';;
+    //         document.getElementById("cantidad").value = "";
+    //         document.getElementById("precioUnitario").value = "";
+    //     });
 }
 
 
