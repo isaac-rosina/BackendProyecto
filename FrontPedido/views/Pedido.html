@@ -15,25 +15,27 @@
         <h1 class="mb-4 text-success">Gestión de Pedidos</h1>
 
         <div class="row mb-4">
-            <!-- <h4>Pedido</h4>
-            <div class="row mb-4 align-items-end mt-3">
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <label class="form-label">Nombre</label>
-                    <input type="text" class="form-control bg-light" id="nombre" placeholder="Ingrese Nombre...">
+            <h4 class="mb-4">Nuevo Pedido</h4>
+
+            <div class="row mb-4">
+
+                <div class="col-md-3">
+                    <label class="form-label">Nombre Cliente</label>
+                    <input type="text" class="form-control" id="nombre">
                 </div>
-                <div class="col-md-3 mb-3 mb-md-0">
+                <div class="col-md-4">
+                    <label class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="fecha">
+                </div>
+                <div class="col-md-4">
                     <label class="form-label">Estado</label>
-                    <select class="form-select bg-light" id="estado">
-                        <option value="pendiente">Pendiente</option>
-                        <option value="enviado">Enviado</option>
-                        <option value="entregado">Entregado</option>
+                    <select class="form-control" id="estado">
+                        <option value="0">Pendiente</option>
+                        <option value="1">Enviado</option>
+                        <option value="2">Entregado</option>
                     </select>
                 </div>
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <label class="form-label">Fecha</label>
-                    <input type="date" id="fecha" class="form-control bg-light">
-                </div>
-            </div> -->
+            </div>
 
             <h4>Detalle del pedido</h4>
             <div class="row mb-4 align-items-end mt-3">
@@ -64,9 +66,6 @@
                 <table class="table table-bordered table-striped table-hover table-success text-center align-middle">
                     <thead class="table-dark">
                         <tr>
-                            <!-- <th scope="col">Nombre</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Fecha</th> -->
                             <th scope="col">Producto</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Precio Unitario</th>
@@ -75,6 +74,36 @@
                         </tr>
                     </thead>
                     <tbody id="tablaDetalles">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- BOTÓN CREAR -->
+            <div class="text-end mb-5">
+                <button type="button" class="btn btn-success fw-bold" onclick="CrearPedido()">
+                    Crear Pedido
+                </button>
+                <div class="text-start">
+                    <h5>Total: <span id="total"></span></h5>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- PEDIDOS GUARDADOS -->
+            <h4 class="mb-4 mt-4">Pedidos Anteriores</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover table-success text-center align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre del cliente</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="TablaPedido">
 
                     </tbody>
                 </table>

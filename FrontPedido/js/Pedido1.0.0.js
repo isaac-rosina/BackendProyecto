@@ -25,6 +25,17 @@ function obtenerProductos() {
 }
 
 
+function obtenerPedido() {
+    fetch("http://localhost:5030/api/Pedido")
+        .then((respuesta) => respuesta.json())
+        .then((data) => {
+            console.log(data);
+            mostrarPedido(data);
+        })
+        .catch((error) => console.error(error));
+}
+
+
 function cargarPrecio() {
     let producto = document.getElementById("producto");
 
@@ -43,18 +54,52 @@ function cargarPrecio() {
 }
 
 
+function CrearPedido() {
+    let pedido = {
+        nombre: document.getElementById("nombre").value,
+        fecha: document.getElementById("fecha").value,
+        estado: Number(document.getElementById("estado").value),
+        total: Number(document.getElementById("total").value),
+
+        detallePedidos: detallesPedido,
+    }
+
+    console.log("ENVIANDO PEDIDO:", pedido);
+
+    fetch("http://localhost:5030/api/Pedido", {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pedido),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("Pedido creado:", data);
+            alert("Pedido creado correctamente");
+
+            detallesPedido = [];
+            document.getElementById("fecha").value = "";
+            document.getElementById("total").value = "";
+            document.getElementById("nombre").value = "";
+
+            MostrarDetalles();
+            obtenerProductos();
+        })
+        .catch((error) => {
+            console.error("Error al crear pedido:", error);
+            alert("Error al conectar con el servidor.");
+        });
+}
+
+
 function AgregarDetalle() {
-    // let nombre = document.getElementById("nombre");
-    // let fecha = document.getElementById("fecha");
-    // let estado = document.getElementById("estado"),value;
     let producto = document.getElementById("producto");
     let cantidad = Number(document.getElementById("cantidad").value);
     let precio = Number(document.getElementById("precioUnitario").value);
 
     let detalle = {
-        // nombre: nombre,
-        // fecha: fecha,
-        // estado: estado,
         productoID: Number(producto.value),
         nombreProducto: producto.options[producto.selectedIndex].text, // lo muestra en pantalla
         cantidad: cantidad,
@@ -63,21 +108,23 @@ function AgregarDetalle() {
 
     detallesPedido.push(detalle);
     MostrarDetalles();
+}
 
-    // fetch("http://localhost:5030/api/Pedido", {
-    //     method: "POST",
-    //     headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(detalle),
-    // })
-    //     .then((res) => res.json())
-    //     .then(() => {
-    //         document.getElementById("producto").innerHTML = '<option value="">[SELECCIONE...]</option>';;
-    //         document.getElementById("cantidad").value = "";
-    //         document.getElementById("precioUnitario").value = "";
-    //     });
+
+function mostrarPedido(data) {
+    const tbody = document.getElementById("TablaPedido");
+    tbody, innerHTML = "";
+
+    data.forEach((element) => {
+        console.log("Elemento:", element);
+        console.log("ID:", element.pedidoID);
+
+        let tr = tbody.insertRow();
+        tr.insertCell(0).innerHTML = element.nombreDelCliente;
+        tr.insertCell(1).innerHTML = element.fechaFormateada;
+        tr.insertCell(2).innerHTML = element.estadoPedido;
+        tr.insertCell(3).innerHTML = element.total;
+    });
 }
 
 
@@ -102,6 +149,10 @@ function MostrarDetalles() {
         </tr>
         `;
     });
+    let inputTotal = document.getElementById("total");
+    if (inputTotal) {
+        inputTotal.innerHTML = totalAcumulado.toFixed(2);
+    }
 }
 
 
@@ -111,3 +162,4 @@ function EliminarDetalle(index) {
 }
 
 obtenerProductos();
+obtenerPedido();

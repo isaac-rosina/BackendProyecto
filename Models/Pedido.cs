@@ -10,6 +10,7 @@ public class Pedido
     public string? Nombre { get; set; }
     public Estado Estado { get; set; }
     public DateTime Fecha { get; set; }
+    public decimal Total { get; set; }
 
     public virtual ICollection<DetallePedido>? DetallePedidos { get; set; }
 }
@@ -28,4 +29,6 @@ public class VistaPedido
     public string EstadoPedido { get; set; }
 
     public string FechaFormateada { get; set; }
+    public decimal TotalDelCliente { get; set; }
+
 }

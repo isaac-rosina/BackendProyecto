@@ -84,6 +84,9 @@ namespace ProyectoPedido.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("PedidoID");
 
                     b.ToTable("Pedidos");

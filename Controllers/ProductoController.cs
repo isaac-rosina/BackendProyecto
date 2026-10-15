@@ -122,7 +122,8 @@ namespace ProyectoPedido.Controllers
                 return NotFound("La categoría no existe.");
             }
 
-            var existeNombre = await _context.Productos.Where(p => p.Nombres == nombreMayuscula && p.ProductoID == productoId).AnyAsync();
+            var existeNombre = await _context.Productos.Where(p => p.Nombres == nombreMayuscula && p.ProductoID != productoId).AnyAsync();
+
             if (!existeNombre) {
                 editarProducto.Nombres = nombreMayuscula;
                 editarProducto.CategoriaID = producto.CategoriaID;

@@ -23,8 +23,8 @@ namespace ProyectoPedido.Controllers
                 PedidoID = p.PedidoID,
                 NombreDelCliente = p.Nombre,
                 FechaFormateada = p.Fecha.ToString("dd/MM/yyyy"),
-                EstadoPedido = p.Estado.ToString()
-
+                EstadoPedido = p.Estado.ToString(),
+                TotalDelCliente = p.Total,
             }).ToListAsync();
             return Ok(pedidos);
         }
@@ -48,6 +48,7 @@ namespace ProyectoPedido.Controllers
                     Nombre = pedido.Nombre,
                     Fecha = pedido.Fecha,
                     Estado = pedido.Estado,
+                    Total = pedido.Total,
                     DetallePedidos = pedido.DetallePedidos.Select(d => new DetallePedido
                     {
                         ProductoID = d.ProductoID,
