@@ -29,6 +29,34 @@ namespace ProyectoPedido.Controllers
             return Ok(pedidos);
         }
 
+        // [HttpGet("{pedidoId}")]
+        // public async Task<IActionResult> ObtenerProducto(int pedidoId)
+        // {
+        //     var pedido = await _context.Pedidos
+        //         .Where(p => p.PedidoID == pedidoId)
+        //         .Select(p => new
+        //         {
+        //             Nombre = p.Nombre,
+        //             Fecha = p.Fecha,
+        //             Estado = p.Estado,
+        //             Total = p.Total,
+        //             DetallePedidos = p.DetallePedidos.Select(d => new
+        //             {
+        //                 ProductoID = d.ProductoID,
+        //                 Cantidad = d.Cantidad,
+        //                 PrecioUnitario = d.PrecioUnitario
+        //             }).ToList()
+        //         })
+        //         .FirstOrDefaultAsync();
+
+        //     if (pedido == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     return Ok(pedido);
+        // }
+
 
         [HttpGet("productos")]
         public IActionResult ObtenerProductos()

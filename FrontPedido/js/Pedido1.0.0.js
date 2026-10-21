@@ -123,7 +123,19 @@ function mostrarPedido(data) {
         tr.insertCell(0).innerHTML = element.nombreDelCliente;
         tr.insertCell(1).innerHTML = element.fechaFormateada;
         tr.insertCell(2).innerHTML = element.estadoPedido;
-        tr.insertCell(3).innerHTML = element.total;
+        tr.insertCell(3).innerHTML = element.totalDelCliente;
+
+        // Boton de mostrar detalles
+        let mostrar = document.createElement("button");
+        mostrar.textContent = "Ver Detalles";
+        mostrar.classList.add("btn", "btn-warning", "fw-bold", "btn-sm");
+
+        mostrar.setAttribute(
+            "onclick", `abrirModal(${element.pedidoID})`,
+        );
+
+        let tdMostrar = tr.insertCell(4);
+        tdMostrar.appendChild(mostrar);
     });
 }
 
@@ -153,6 +165,43 @@ function MostrarDetalles() {
     if (inputTotal) {
         inputTotal.innerHTML = totalAcumulado.toFixed(2);
     }
+}
+
+function abrirModal(id) {
+    const tbody = document.getElementById("tablaDetallesModal");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    fetch(`http://localhost:5030/api/Pedido/${id}`)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`Error HTTP: ${res.status}`)
+            }
+            return res.json();
+        })
+        .then((data) => {
+            console.log("Producto:", data);
+
+            data.forEach((element) => {
+                console.log("Elemento:", element);
+                console.log("ID:", element.productoID)
+
+                let tr = tbody.insertRow();
+                tr.insertCell(0).innerHTML = element.nombreProducto;
+                tr.insertCell(1).innerHTML = element.cantidad;
+                tr.insertCell(2).innerHTML = element.precioUnitario;
+                tr.insertCell(3).innerHTML = element.precioUnitario;
+            });
+
+            let modal = new bootstrap.Modal(
+                document.getElementById("editarProducto"),
+            );
+
+            modal.show();
+        })
+        .catch((error) => {
+            console.error("No se pudo acceder a la API:", error);
+        });
 }
 
 

@@ -1,9 +1,0 @@
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.csproj.AssemblyReference.cache
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\rpswa.dswa.cache.json
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.AssemblyInfoInputs.cache
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.AssemblyInfo.cs
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.csproj.CoreCompileInputs.cache
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Urano\OneDrive\Documentos\Programacion\BackendProyecto\BackendProyecto\obj\Debug\net10.0\BackendProyecto.sourcelink.json

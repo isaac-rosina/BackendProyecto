@@ -12,7 +12,15 @@
 <body class="bg-success">
 
     <div class="container mt-4 shadow-sm p-4 bg-white rounded">
-        <h1 class="mb-4 text-success">Gestión de Pedidos</h1>
+        <div class="row ">
+            <div class="col-6">
+                <h1 class="mb-4 text-success">Gestión de Pedido</h1>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-primary m-2 fw-bold" onclick="location.href='Categoria.html'">Categoría</button>
+                <button class="btn btn-danger m-2 fw-bold" onclick="location.href='Producto.html'">Producto</button>
+            </div>
+        </div>
 
         <div class="row mb-4">
             <h4 class="mb-4">Nuevo Pedido</h4>
@@ -80,11 +88,11 @@
             </div>
 
             <!-- BOTÓN CREAR -->
-            <div class="text-end mb-5">
+            <div class="mb-4">
                 <button type="button" class="btn btn-success fw-bold" onclick="CrearPedido()">
                     Crear Pedido
                 </button>
-                <div class="text-start">
+                <div class="mt-3">
                     <h5>Total: <span id="total"></span></h5>
                 </div>
             </div>
@@ -101,6 +109,7 @@
                             <th>Fecha</th>
                             <th>Estado</th>
                             <th>Total</th>
+                            <th>Detalles</th>
                         </tr>
                     </thead>
                     <tbody id="TablaPedido">
@@ -108,7 +117,49 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="mostrarDetallesModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-warning">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles del Pedido</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body bg-light row m-0">
+
+                            <input type="hidden" id="idPedidoModal">
+                            <div class="table-responsive">
+                                <table
+                                    class="table table-bordered table-striped table-hover table-success text-center align-middle">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">Producto</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Precio Unitario</th>
+                                            <th scope="col">Subtotal</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tablaDetallesModal">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer bg-light">
+                            <button type="button" class="btn btn-secondary fw-bold"
+                                data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
     </div>
 
     <script src="/js/Pedido1.0.0.js"></script>
