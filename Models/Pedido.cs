@@ -13,6 +13,19 @@ public class Pedido
     public decimal Total { get; set; }
 
     public virtual ICollection<DetallePedido>? DetallePedidos { get; set; }
+
+    public void CalcularTotal()
+    {
+        if (DetallePedidos != null & DetallePedidos.Any())
+            {
+                Total = DetallePedidos.Sum(d => d.Cantidad * d.PrecioUnitario);
+            }
+        else
+            {
+                Total = 0;
+            }
+    }
+
 }
 
 public enum Estado
