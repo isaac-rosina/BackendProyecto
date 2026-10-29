@@ -33,8 +33,16 @@ namespace ProyectoPedido.Controllers
 
                 NombreCategoria = p.Categoria.Nombres
             }).ToList();
-            return Ok(ProductoMostrar);
 
+            var resultado = new
+            {
+                TotalProductos = ProductoMostrar.Count,
+                Productos = ProductoMostrar,
+                TotalStock = ProductoMostrar.Sum(p => p.StockProducto),
+                CapitalInvertido = ProductoMostrar.Sum(p => p.StockProducto * p.CostoProducto)
+            };
+
+            return Ok(resultado);
         }
   
         [HttpGet("idCategorias")]

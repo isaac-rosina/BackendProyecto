@@ -21,7 +21,13 @@ namespace ProyectoPedido.Controllers
         {
             var categorias = await _context.Categorias.ToListAsync();
 
-            return Ok(categorias);
+            var resultado = new
+            {
+                TotalCategoria = categorias.Count,
+                categorias = categorias
+            };
+
+            return Ok(resultado);
         }
 
         [HttpGet("{categoriaId}")]

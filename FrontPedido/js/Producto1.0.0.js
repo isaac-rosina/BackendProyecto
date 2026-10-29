@@ -30,11 +30,15 @@ function obtenerProducto() {
 
 
 function mostrarProducto(data) {
+    document.getElementById("totalProductos").textContent = data.totalProductos;
+    document.getElementById("totalStock").textContent = data.totalStock;
+    document.getElementById("totalCapital").textContent = data.capitalInvertido;
+
     const tbody = document.getElementById("tablaProducto");
     if (!tbody) return;
     tbody.innerHTML = "";
 
-    data.forEach((element) => {
+    data.productos.forEach((element) => {
         console.log("Elemento:", element);
         console.log("ID:", element.productoID)
 
@@ -156,7 +160,7 @@ function editarProducto() {
         body: JSON.stringify(editarProducto),
     })
         .then(() => {
-             console.log("ID recibido editarfinal:", id);
+            console.log("ID recibido editarfinal:", id);
             document.getElementById("idEditarProducto").value = 0;
             document.getElementById("CategoriaIDeditar").value = 0;
             document.getElementById("nombreEditarProducto").value = "";

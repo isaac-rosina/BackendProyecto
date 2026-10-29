@@ -12,6 +12,11 @@
 <body class="bg-success">
 
     <div class="container mt-4 shadow-sm p-4 bg-white rounded">
+        <div class="mb-3">
+                <strong>Cantidad de Pedidos: </strong> <span id="totalPedidos">0</span> |
+                <strong>Capital cobrado: </strong> <span id="totalCapital">0</span>
+        </div>
+
         <div class="row ">
             <div class="col-6">
                 <h1 class="mb-4 text-success">Gestión de Pedido</h1>
@@ -139,7 +144,6 @@
                                             <th scope="col">Cantidad</th>
                                             <th scope="col">Precio Unitario</th>
                                             <th scope="col">Subtotal</th>
-                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody id="tablaDetallesModal">

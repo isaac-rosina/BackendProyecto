@@ -14,13 +14,21 @@
     <div class="container mt-4 shadow-sm p-4 bg-white rounded">
 
         <div class="container mb-4">
-            <div class="row ">
+            <div class="mb-3">
+                <strong>Cantidad de Productos: </strong> <span id="totalProductos">0</span> |
+                <strong>Stock Total General: </strong> <span id="totalStock">0</span> |
+                <strong>Capital invertido: </strong> <span id="totalCapital">0</span>
+            </div>
+            
+            <div class="row">
                 <div class="col-6">
                     <h1 class="mb-4 text-danger">Gestión de Productos</h1>
                 </div>
                 <div class="col-4">
-                    <button class="btn btn-primary m-2 fw-bold" onclick="location.href='Categoria.html'">Categoría</button>
-                    <button class="btn btn-success m-2 fw-bold" onclick="location.href='Pedido.html'">Pedido</button>
+                    <button class="btn btn-primary m-2 fw-bold"
+                        onclick="location.href='Categoria.html'">Categoría</button>
+                    <button class="btn btn-success m-2 fw-bold"
+                        onclick="location.href='Pedido.html'">Pedido</button>
                 </div>
             </div>
 
@@ -28,23 +36,28 @@
                 <div class="d-flex row">
                     <div class="col-md-3">
                         <select name="CategoriaID" id="CategoriaID" class="form-control bg-light">
-                        <option value="">[SELECCIONE...]</option>
-                    </select>
+                            <option value="">[SELECCIONE...]</option>
+                        </select>
                     </div>
                     <div class="col-md-3 mb-3">
-                         <input type="text" class="form-control bg-light" id="nombreProducto" placeholder="Ingrese nombre">
+                        <input type="text" class="form-control bg-light" id="nombreProducto"
+                            placeholder="Ingrese nombre">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" class=" form-control bg-light" id="costoProducto" placeholder="Ingrese costo">
+                        <input type="number" class=" form-control bg-light" id="costoProducto"
+                            placeholder="Ingrese costo">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" class="form-control bg-light" id="ventaProducto" placeholder="Ingrese precio">
+                        <input type="number" class="form-control bg-light" id="ventaProducto"
+                            placeholder="Ingrese precio">
                     </div>
                     <div class="col-md-3">
-                        <input type="number" class="form-control bg-light" id="stockProducto" placeholder="Ingrese stock">
+                        <input type="number" class="form-control bg-light" id="stockProducto"
+                            placeholder="Ingrese stock">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control bg-light" id="descripcionProducto" placeholder="Ingrese descripción">
+                        <input type="text" class="form-control bg-light" id="descripcionProducto"
+                            placeholder="Ingrese descripción">
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-primary w-100 fw-bold" onclick="agregarProducto()">Guardar</button>
@@ -53,7 +66,7 @@
             </div>
         </div>
 
-<!-- Modal -->
+        <!-- Modal -->
         <div class="modal fade" id="editarProducto" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -64,39 +77,46 @@
                     </div>
                     <div class="modal-body bg-light row m-0">
 
-                            <input type="hidden" id="idEditarProducto">
+                        <input type="hidden" id="idEditarProducto">
                         <div class="col-md-4">
                             <label for="nombreEditarProducto">Nombre</label>
-                            <input type="text" class="form-control" id="nombreEditarProducto" placeholder="Ingrese nuevo Nombre">
+                            <input type="text" class="form-control" id="nombreEditarProducto"
+                                placeholder="Ingrese nuevo Nombre">
                         </div>
                         <div class="col-md-4">
                             <label for="costoEditarProducto">Costo</label>
-                            <input type="number" class="form-control" id="costoEditarProducto" placeholder="Ingrese nuevo Costo">
+                            <input type="number" class="form-control" id="costoEditarProducto"
+                                placeholder="Ingrese nuevo Costo">
                         </div>
                         <div class="col-md-4">
                             <label for="precioEditarProducto">Precio</label>
-                            <input type="number" class="form-control" id="precioEditarProducto" placeholder="Ingrese nuevo Precio">
+                            <input type="number" class="form-control" id="precioEditarProducto"
+                                placeholder="Ingrese nuevo Precio">
                         </div>
                         <div class="col-md-4">
                             <label for="stockEditarProducto">Stock</label>
-                            <input type="number" class="form-control" id="stockEditarProducto" placeholder="Ingrese nuevo Stock">
+                            <input type="number" class="form-control" id="stockEditarProducto"
+                                placeholder="Ingrese nuevo Stock">
                         </div>
                         <div class="col-md-4">
                             <label for="CategoriaIDeditar">Categoria</label>
-                            <input type="number" class="form-control" id="CategoriaIDeditar" placeholder="Ingrese nueva Categoria">
+                            <input type="number" class="form-control" id="CategoriaIDeditar"
+                                placeholder="Ingrese nueva Categoria">
                         </div>
 
                     </div>
 
                     <div class="modal-footer bg-light">
-                        <button type="button" class="btn btn-secondary fw-bold" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary fw-bold" onclick="editarProducto()">Guardar</button>
+                        <button type="button" class="btn btn-secondary fw-bold"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary fw-bold"
+                            onclick="editarProducto()">Guardar</button>
                     </div>
                 </div>
             </div>
         </div>
 
-<!-- Tabla -->
+        <!-- Tabla -->
         <table class="table table-bordered table-hover table-danger table-striped">
             <thead class="table-dark">
                 <tr>

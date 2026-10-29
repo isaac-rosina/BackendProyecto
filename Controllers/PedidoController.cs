@@ -26,36 +26,40 @@ namespace ProyectoPedido.Controllers
                 EstadoPedido = p.Estado.ToString(),
                 TotalDelCliente = p.Total,
             }).ToListAsync();
-            return Ok(pedidos);
+
+            var resultado = new
+            {
+                TotalPedidos = pedidos.Count,
+                Pedido = pedidos,
+                CapitalTotal = pedidos.Sum(p => p.TotalDelCliente)
+            };
+
+            return Ok(resultado);
         }
 
-        // [HttpGet("{pedidoId}")]
-        // public async Task<IActionResult> ObtenerProducto(int pedidoId)
-        // {
-        //     var pedido = await _context.Pedidos
-        //         .Where(p => p.PedidoID == pedidoId)
-        //         .Select(p => new
-        //         {
-        //             Nombre = p.Nombre,
-        //             Fecha = p.Fecha,
-        //             Estado = p.Estado,
-        //             Total = p.Total,
-        //             DetallePedidos = p.DetallePedidos.Select(d => new
-        //             {
-        //                 ProductoID = d.ProductoID,
-        //                 Cantidad = d.Cantidad,
-        //                 PrecioUnitario = d.PrecioUnitario
-        //             }).ToList()
-        //         })
-        //         .FirstOrDefaultAsync();
+        [HttpGet("{pedidoId}")]
+        public async Task<IActionResult> ObtenerDetalles(int pedidoId)
+        {
+            var pedido = await _context.Pedidos
+                .Where(p => p.PedidoID == pedidoId)
+                .Select(p => new
+                {
+                    DetallePedidos = p.DetallePedidos.Select(d => new
+                    {
+                        ProductoID = d.ProductoID,
+                        Cantidad = d.Cantidad,
+                        PrecioUnitario = d.PrecioUnitario
+                    }).ToList()
+                })
+                .FirstOrDefaultAsync();
 
-        //     if (pedido == null)
-        //     {
-        //         return NotFound();
-        //     }
+            if (pedido == null)
+            {
+                return NotFound();
+            }
 
-        //     return Ok(pedido);
-        // }
+            return Ok(pedido);
+        }
 
 
         [HttpGet("productos")]

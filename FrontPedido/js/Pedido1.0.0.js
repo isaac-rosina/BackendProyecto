@@ -10,7 +10,7 @@ function obtenerProductos() {
             productoSeleccionado.innerHTML =
                 '<option value="">[SELECCIONE...]</option>';
 
-            data.forEach((producto) => {
+            data.productos.forEach((producto) => {
                 productoSeleccionado.innerHTML += `
                     <option 
                         value="${producto.productoID}"data-precio="${producto.ventaProducto}">
@@ -112,10 +112,13 @@ function AgregarDetalle() {
 
 
 function mostrarPedido(data) {
+    document.getElementById("totalPedidos").textContent = data.totalPedidos;
+    document.getElementById("totalCapital").textContent = data.capitalTotal;
+
     const tbody = document.getElementById("TablaPedido");
     tbody, innerHTML = "";
 
-    data.forEach((element) => {
+    data.pedido.forEach((element) => {
         console.log("Elemento:", element);
         console.log("ID:", element.pedidoID);
 
@@ -182,7 +185,7 @@ function abrirModal(id) {
         .then((data) => {
             console.log("Producto:", data);
 
-            data.forEach((element) => {
+            data.detallePedidos.forEach((element) => {
                 console.log("Elemento:", element);
                 console.log("ID:", element.productoID)
 
@@ -190,11 +193,11 @@ function abrirModal(id) {
                 tr.insertCell(0).innerHTML = element.nombreProducto;
                 tr.insertCell(1).innerHTML = element.cantidad;
                 tr.insertCell(2).innerHTML = element.precioUnitario;
-                tr.insertCell(3).innerHTML = element.precioUnitario;
+                tr.insertCell(3).innerHTML = element.precioUnitario * element.cantidad;
             });
 
             let modal = new bootstrap.Modal(
-                document.getElementById("editarProducto"),
+                document.getElementById("mostrarDetallesModal"),
             );
 
             modal.show();
